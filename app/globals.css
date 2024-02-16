@@ -1,0 +1,153 @@
+html
+{
+    height: 100%;
+}
+
+body
+{
+    box-sizing: border-box;
+    background-color: #B6E0FF;
+    height: 100%;
+    margin: 0;
+}
+.todo
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    background-color: #B6E0FF;
+    height: 100%;
+    margin: 0;
+}
+
+.list
+{
+    box-sizing: border-box;
+    width: 40rem;
+    height: 33.5rem;
+    background-color: #00111d;
+    border-radius: 0.625rem;
+    padding-top: 3.56rem;
+}
+
+.title
+{
+    color: #B6E0FF;
+    font-family: "Fira Code", monospace;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    
+}
+
+.content
+{
+    box-sizing: border-box;
+    max-height: 15rem;
+    width: 24.25rem;
+    border-radius: 0.625rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #253C4D;
+    margin: auto;
+    margin-top: 1.0rem;
+    flex-shrink: 0;
+}
+
+.content::-webkit-scrollbar
+{
+    display: none;
+}
+
+.circlebutton
+{
+    height: 1.5625rem;
+    width: 1.5625rem;
+    border-radius: 50%;
+    border: 1px solid #B6E0FF;
+    background-color: transparent;
+    color: #B6E0FF;
+    font-size: 1.25rem;
+    font-weight: 200;
+}
+
+.defaulttext
+{
+    color: #B6E0FF;
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    background-color: transparent;
+    border: 0;
+    height: 3.75rem;
+    width: 21rem;
+    outline: none;
+}
+
+.block
+{
+    box-sizing: border-box;
+    width: 24.25rem;
+    height: 3.75rem;
+    background-color: #253C4D;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding-left: 0.81rem;
+    justify-content: space-between;
+}
+
+.add
+{
+    border-top: 0.065rem solid rgba(182, 224, 255, 0.32);
+}
+
+.add:first-child
+{
+    border-top: none;
+}
+
+.add p
+{
+    color: #FFF;
+    font-family: Inter, monospace;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    height: 3.75rem;
+    width: 21rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.enter
+{
+    border-radius: 0.625rem;
+}
+
+.finished button
+{
+    background-color: #B6E0FF;
+    color: #B6E0FF;
+}
+
+.finished p
+{
+    color: rgba(182, 224, 255, 0.32);
+    font-family: Inter, monospace;
+    font-size: 0.8125rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-decoration: line-through;
+    height: 3.75rem;
+    width: 21rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
