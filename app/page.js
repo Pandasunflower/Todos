@@ -1,49 +1,37 @@
 'use client';
-import {useState, useRef} from "react";
-
-
-
-  const initialTodos = [
-    {
-      id: 1,
-      name: "Calculus HW2",
-      done: false,
-    },
-    {
-      id: 2,
-      name: "Side Project Figma",
-      done: false,
-    },
-    {
-      id: 3,
-      name: "Course Slide",
-      done: false,
-    },
-    {
-      id: 4,
-      name: "Write Blog Post",
-      done: true,
-    },
-    {
-      id: 5,
-      name: "Test",
-      done: true,
-    },
-  ];
+import {useState, useRef, useEffect} from "react";
+import { createClient } from '@supabase/supabase-js'
+const supabaseUrl = 'https://gfpjuskvthnnmgbbpgrl.supabase.co'
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_KEY
+const supabase = createClient(supabaseUrl, supabaseKey)
 
 export default function Home() {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState([]);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    async function fetchTodos(){
+      let { data: Todos, error } = await supabase
+        .from('Todos')
+        .select('*') 
+      setTodos(Todos);
+    }
+    fetchTodos();
+  }, []);
+
   function Todo({todo}){
     return(
       <div className={`block add ${todo.done ? 'finished' : ''}`}>
-        <button className="circlebutton" onClick={() => {
+        <button className="circlebutton" onClick={async() => {
+          const { data, error } = await supabase
+          .from('Todos')
+          .update({ done: !todo.done })
+          .eq('id', todo.id)
+          .select()
+        
           const newTodos = todos.map((t) => {
             if (t.id === todo.id){
-              return {
-                ...t,
-                done: !t.done,
-              }
+              return data[0];
             }
             return t});
             setTodos(newTodos);
@@ -66,12 +54,15 @@ export default function Home() {
         TODO
     </h1>
     <div className="block enter">
-        <button className="circlebutton" onClick={() => 
-          {setTodos([{
-            id: todos.length + 1,
-            name: inputRef.current.value,
-            done: false
-          }, ...todos])
+        <button className="circlebutton" onClick={async() => {
+          const { data, error } = await supabase
+          .from('Todos')
+          .insert([
+            { name: inputRef.current.value, done: false },
+          ])
+          .select()
+        
+          setTodos([data[0], ...todos])
           inputRef.current.value = '';
           }}>+</button>
         <input 
